@@ -5,14 +5,88 @@
 Quản lý mạng
 
 Phần 1: Tổng quan về mạng
-1.	Giới thiệu chung về mạng
-2.	Kiến trúc mạng
+
+1. Giới thiệu chung về mạng
+2. Kiến trúc mạng
 
 Phần 2: Quản lý mạng
-1.	Giới thiệu chung về quản lý mạng
-2.	Kiến trúc quản lý mạng
-3.	Các giao thức quản lý mạng
-4.	Một số thách thức trong quản lý mạng
 
-Phần 3: SNMP
+1. Giới thiệu chung về quản lý mạng
+2. Kiến trúc quản lý mạng
+3. Các giao thức quản lý mạng
+4. Một số thách thức trong quản lý mạng
+
+## Phần 3: SNMP
+
 ---
+
+## Introduction of Network Management
+
+network management involves the planning, organizing, monitoring, accounting, and controlling of activities and resources and to keep the network service available and correct.
+
+objectives of network management:
+
+- Managing system resources and services: this includes control, monitor, update, and report of system states, device configurations, and network services.
+- Simplifying systems management complexity: is the task of management systems that extrapolates systems management information into a humanly manageable form. Conversely, management systems should also have the ability to interpret high-level management objectives.
+- Providing reliable services: means to provide networks with a high quality of service and to minimize system downtime. Distributed management systems should detect and fix network faults and errors. Network management must safeguard against all security threats.
+- Maintaining cost consciousness: requires to keep track of system resources and network users. All network resource and service usage should be tracked and reported.
+
+## Components of NM system
+
+Network management has three main components: a managing center, a managed device, and a network management protocol.
+
+- The managing center consists of the network administrator and his or her facilities.
+- A managed device is the network equipment, including its software, that is controlled by the managing center. Any hub, bridge, router, server, printer or modem can be a managed device.
+- The network management protocol is a policy between the managing center and the managed devices. The protocol in this context allows the managing center to obtain the status of managed devices.
+
+As specified in Internet RFCs and other documents, a typical distributed
+management system comprises:
+• Network elements: Equipments which communicate with the network, according to standards defined by the ITU-T, with the purpose of being monitored or controlled, are named network elements. Sometimes they are also called managed devices [ITU96]. Network elements are hardware devices such as computers, routers, and terminal servers that are connected to networks. A network element is a network node that contains an SNMP agent, which resides on a managed network.
+• Manager: A manager generates commands and receives notifications from agents. There are usually only a few managers in a system.
+• Agents: Agents collect and store management information such as the number of error packets received by a network element. An agent has local knowledge of management information and transforms that information into the form compatible with SNMP. An agent responds to commands from the manager and sends notification to the manager. There are potentially many agents in a system.
+• Managed object: A managed object is a vision of a feature of a network, from the point of view of the management system [ITU92]. All physical and logical resources, such as signaling terminals, routes, event
+logs, alarm reports and subscriber data, are regarded as managed objects. For example, in IP networks, a list of current active TCP circuits in a particular host computer is a managed object. Managed objects
+differ from variables, which are particular object instances. Managed objects can be scalar (defining a single object instance) or tabular (defining multiple and related instances). In literature, “managed object” is sometimes used interchangeably with “managed element.”
+• Network Management Stations (NMSs): Sometimes NMSs are called consoles. These devices execute management applications that monitor and control network elements. Physically, NMSs are usually engineering workstation-caliber computers with fast CPUs, mega pixel color displays, substantial memory, and abundant disk space. At least one NMS must be present in each managed environment.
+• Structure of Management Information (SMI)
+The structure of management information (SMI) language is used to define the rules for naming objects and to encode objects in a managed network center. In other words, SMI is a language by which a specific
+instance of the data in a managed network center is defined. SMI subdivides into three parts: module definitions, object definitions, and notification definitions. Module definitions are used when describing information modules. An ASN.1 macro, MODULE-IDENTITY, is used to concisely convey the
+semantics of an information module. Object definitions describe managed objects.
+An ASN.1 macro, OBJECT-TYPE, is used to concisely convey the syntax and semantics
+of a managed object.
+Notification definitions (also known as “traps”) are used when describing unsolicited transmissions of management information. An ASN.1 macro, NOTIFICATION-TYPE, concisely conveys the syntax and semantics of
+a notification.
+• Management Information Base (MIB)
+A management information base (MIB) stems from the OSI/ISO Network management model and is a type of database used to manage the devices in a communications network. It comprises a collection of objects in a (virtual) database used to manage entities (such as routers and switches) in a network.
+
+With the expansion of networks, the evolution of network architectures, and the increasing requirements for network management, the network management protocols also evolve consequently. A typical management network system will make use of the management operation services to monitor network elements. Management agents found
+on network elements will make use of the management notification services to send notifications or alarms to the network management system.
+• Network management protocols are used to define how network management information is exchanged between network management services and management agents. Some popular network management protocols are discussed as follows.
+
+## Network Management Architectures
+
+(48)
+
+## Simple Network Management Protocol (SNMP)
+
+The SNMP is an application layer protocol and uses User Datagram Protocol (UDP) to exchange management information between management entities, which offers network management services for monitoring and control of network devices. SNMP
+enables network administrators to manage network performance, find and solve network problems, and plan for network growth. SNMP is a network management tool that allows network administrator to perform monitoring control, and planning tasks on the network to be managed.
+
+---
+
+Quản lý mạng bao gồm các nhiệm vụ: Lên kế hoạch, tổ chức, giám sát, tính toán và điều khiển các hoạt động và các tài nguyên mạng giữ cho các dịch vụ mạng luôn sẵn sàng và thực hiện đúng nhiệm vụ của mình.
+
+Mục tiêu của quản lý mạng:
+
+- Quản lý tài nguyên và dịch vụ: Bao gồm việc điều khiển, giám sát, cập nhật và báo cáo tình trạng mạng, cấu hình thiết bị và dịch vụ mạng.
+- Đơn giản hóa sự phức tạp trong quản lý hệ thống: Hệ thống quản lý có nhiệm vụ chuyển các thông tin hệ thống thành dạng con người có thể hiểu được.
+- Đảm bảo các dịch vụ tin cậy: Quản lý mạng phát hiện lỗi và các mối đe dọa kịp thời đảm bảo trạng thái ổn định và giảm thiểu thời gian ngừng hoạt động của hệ thống.
+
+Kiến trúc hệ thống quản lý mạng:
+
+Theo Internet RFCs thành phần hệ thống mạng phân tán điển hình bao gồm
+
+1. Network elements: Các thiết bị mạng như: computer, router, server, switch,...
+2. Manager: Người quản lý đưa ra các lệnh và nhận thông báo từ các agent. Thường chỉ có vài manager trên một hệ thống
+3. Agent: Nhận yêu cầu từ manager thực hiện thu thập và lưu trữ các thông tin quản lý được từ các phần tử mạng sau đó gửi lại cho manager. Một agent có hiểu biết về các thông tin quản lý và chuyển đổi chúng sang form tương thích với giao thức quản lý mạng.
+4. Đối tượng quản lý: tài nguyên vật lý và logic: cpu, dung lượng, nhiệt độ.
