@@ -75,16 +75,43 @@ enables network administrators to manage network performance, find and solve net
 ---
 
 Quản lý mạng bao gồm các nhiệm vụ: Lên kế hoạch, tổ chức, giám sát, tính toán và điều khiển các hoạt động và các tài nguyên mạng giữ cho các dịch vụ mạng luôn sẵn sàng và thực hiện đúng nhiệm vụ của mình.
-
 Mục tiêu của quản lý mạng:
-
-- Quản lý tài nguyên và dịch vụ: Bao gồm việc điều khiển, giám sát, cập nhật và báo cáo tình trạng mạng, cấu hình thiết bị và dịch vụ mạng.
-- Đơn giản hóa sự phức tạp trong quản lý hệ thống: Hệ thống quản lý có nhiệm vụ chuyển các thông tin hệ thống thành dạng con người có thể hiểu được.
-- Đảm bảo các dịch vụ tin cậy: Quản lý mạng phát hiện lỗi và các mối đe dọa kịp thời đảm bảo trạng thái ổn định và giảm thiểu thời gian ngừng hoạt động của hệ thống.
-
+•	Quản lý tài nguyên và dịch vụ: Bao gồm việc điều khiển, giám sát, cập nhật và báo cáo tình trạng mạng, cấu hình thiết bị và dịch vụ mạng.
+•	Đơn giản hóa sự phức tạp trong quản lý hệ thống: Hệ thống quản lý có nhiệm vụ chuyển các thông tin hệ thống thành dạng con người có thể hiểu được.
+•	Đảm bảo các dịch vụ tin cậy: Quản lý mạng phát hiện lỗi và các mối đe dọa kịp thời đảm bảo trạng thái ổn định và giảm thiểu thời gian ngừng hoạt động của hệ thống.
 Kiến trúc hệ thống quản lý mạng:
-
 Theo Internet RFCs thành phần hệ thống mạng phân tán điển hình bao gồm
+1.	Network elements: Các thiết bị mạng như: computer, router, server, switch,...
+2.	Manager: Người quản lý đưa ra các lệnh và nhận thông báo từ các agent. Thường chỉ có vài manager trên một hệ thống
+3.	Agent: Nhận yêu cầu từ manager thực hiện thu thập và lưu trữ các thông tin quản lý được từ các phần tử mạng sau đó gửi lại cho manager. Một agent có hiểu biết về các thông tin quản lý và chuyển đổi chúng sang form tương thích với giao thức quản lý mạng.
+4.	Đối tượng quản lý: tài nguyên vật lý: cpu, bộ nhớ, ổ đĩa,…, tài nguyên logic: tốc độ mạng, gói tin dữ liệu, thông lượng, chất lượng đường truyền, Các event log, báo cáo cảnh báo,… dịch vụ mạng: SMTP, …
+5.	Network Management Stations: Trạm quản lý mạng hay còn gọi là Trạm điều khiển thực thi các ứng dụng quản lý giám sát và điều khiển các phần tử mạng. Về mặt vật lý, các NMS thường là các máy tính trạm làm việc kỹ thuật có CPU nhanh, màn hình màu mega pixel, bộ nhớ lớn và không gian đĩa dồi dào.
+6.	Giao thức quản lý mạng: Một giao thức quản lý được sử dụng để truyền tải thông tin quản lý giữa các đại lý và các trạm quản lý mạng (NMS). Giao thức thông tin quản lý chung (CMIP), Giao thức quản lý mạng đơn giản (SNMP) là giao thức quản lý tiêu chuẩn trên thực tế của cộng đồng Internet.
+(Giao thức thông tin quản lý chung (CMIP) là một giao thức quản lý mạng dựa trên OSI. Nó cung cấp triển khai cho các dịch vụ được xác định bởi CMIS (Dịch vụ Thông tin Quản lý Chung), cho phép giao tiếp giữa các ứng dụng quản lý mạng và các agent quản lý.)
+7.	Structure of Management Information (SMI): được sử dụng để xác định các quy tắc đặt tên cho các đối tượng và mã hóa các đối tượng trong một trung tâm mạng được quản lý. Nói cách khác, SMI là một ngôn ngữ để xác định một phiên bản cụ thể của dữ liệu trong một trung tâm mạng được quản lý.
+SMI chia thành ba phần: định nghĩa mô-đun, định nghĩa đối tượng và định nghĩa thông báo.
+8.	Management Information Base (MIB) là một loại cơ sở dữ liệu được sử dụng để quản lý các thiết bị trong mạng truyền thông.
+
+ 
+The Typical Network Management Architecture
+Tương tác giữa NMS và các thiết bị được quản lý có thể là bất kỳ loại lệnh nào trong bốn loại lệnh khác nhau: đọc, ghi, duyệt và bẫy.
+• Đọc: Để giám sát các thiết bị được quản lý, NMSs đọc các biến do thiết bị duy trì.
+• Ghi: Để điều khiển các thiết bị được quản lý, NMS ghi các biến được lưu trữ trong các thiết bị được quản lý.
+• Traverse: NMS sử dụng các hoạt động này để xác định các biến mà thiết bị được quản lý hỗ trợ và để thu thập tuần tự thông tin từ các bảng biến (chẳng hạn như bảng định tuyến IP) trong các thiết bị được quản lý.
+• Bẫy: Các thiết bị được quản lý sử dụng bẫy để báo cáo không đồng bộ các sự kiện nhất định cho NMS.
+SNMP
+SNMP cho phép quản trị viên mạng quản lý hiệu suất mạng, tìm và giải quyết các sự cố mạng cũng như lập kế hoạch phát triển mạng. SNMP là một công cụ quản lý mạng cho phép người quản trị mạng thực hiện các nhiệm vụ giám sát, điều khiển và lập kế hoạch trên mạng được quản lý.
+SNMP dựa trên giao thức phản hồi yêu cầu không đồng bộ được cải tiến với tính năng thăm dò theo hướng bẫy. Không đồng bộ định tính đề cập đến thực tế là giao thức không cần đợi phản hồi trước khi gửi các thông báo khác. Thăm dò có điều hướng đề cập đến việc người quản lý thăm dò ý kiến để phản hồi thông báo bẫy được gửi bởi một tác nhân, xảy ra khi có một ngoại lệ hoặc sau khi một số biện pháp đã đạt đến một giá trị ngưỡng nhất định. SNMP hoạt động theo cách không kết nối với UDP là phương thức truyền tải ưu tiên.
+Trình quản lý SNMP gửi thông báo đến một tác nhân qua cổng đích UDP 161, trong khi tác nhân gửi thông báo bẫy tới trình quản lý thông qua cổng đích UDP 162. Chế độ không kết nối được chọn một phần để đơn giản hóa việc triển khai SNMP và vì không kết nối thường là chế độ ưu tiên cho các ứng dụng quản lý mà cần phải nói chuyện với nhiều đại lý.
+ 
+SNMP Protocol
+Thiết kế mô-đun của SNMP được thể hiện ở sự nhất quán về kiến trúc, cấu trúc và khuôn khổ của cả ba phiên bản; điều này hỗ trợ sự phát triển dần dần của các cải tiến giao thức. Mặc dù SNMPv1 rất hiệu quả và dễ thực hiện, nó cũng có những vấn đề và hạn chế. Các cải tiến cho SNMPv1, dẫn đến một phiên bản SNMP mới, SNMPv2, cũng đã sửa các lỗi và hạn chế trong SNMPv1. Tuy nhiên, những cải tiến mới này không giải quyết được các thiếu sót về bảo mật, chẳng hạn như quyền riêng tư của dữ liệu, giả mạo và tiết lộ trái phép dữ liệu. Sau đó, SNMPv3 sau đó được phát triển để giải quyết những thiếu sót về bảo mật này: SNMPv3 bổ sung các tính năng bảo mật, chẳng hạn như kiểm soát truy cập, xác thực và mã hóa dữ liệu quản lý. Các thông số kỹ thuật SNMPv3 đã được Nhóm Chỉ đạo Kỹ thuật Internet (IESG) phê duyệt là Tiêu chuẩn Internet đầy đủ vào tháng 3 năm 2002 và các nhà cung cấp đã bắt đầu hỗ trợ SNMPv3 trong các sản phẩm của họ.
+SNMPv1:
+SNMPv1 là Khung quản lý mạng chuẩn Internet ban đầu, như được mô tả trong RFCs 1155, 1157 và 1212. Thường có ba cộng đồng trong SNMPv1: chỉ đọc, đọc-ghi và bẫy. Cần lưu ý rằng mặc dù SNMPv1 là lịch sử nhưng nó vẫn là cách triển khai SNMP chính mà nhiều nhà cung cấp hỗ trợ.
+Bảo mật của SNMPv1 dựa trên các cộng đồng, không có gì khác ngoài mật khẩu: các chuỗi văn bản thuần túy cho phép bất kỳ ứng dụng dựa trên SNMP nào biết các chuỗi đó để có quyền truy cập vào thông tin quản lý của thiết bị.
+SNMPv1 là một giao thức yêu cầu / phản hồi đơn giản. Hệ thống quản lý mạng đưa ra yêu cầu và các thiết bị được quản lý trả lại phản hồi. Hành vi này được thực hiện bằng cách sử dụng một trong bốn hoạt động giao thức: Get, GetNext, Set và Trap.
+SNMPv2
+
 
 1. Network elements: Các thiết bị mạng như: computer, router, server, switch,...
 2. Manager: Người quản lý đưa ra các lệnh và nhận thông báo từ các agent. Thường chỉ có vài manager trên một hệ thống
