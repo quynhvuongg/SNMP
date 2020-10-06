@@ -69,51 +69,91 @@ on network elements will make use of the management notification services to sen
 
 ## Simple Network Management Protocol (SNMP)
 
-The SNMP is an application layer protocol and uses User Datagram Protocol (UDP) to exchange management information between management entities, which offers network management services for monitoring and control of network devices. SNMP
-enables network administrators to manage network performance, find and solve network problems, and plan for network growth. SNMP is a network management tool that allows network administrator to perform monitoring control, and planning tasks on the network to be managed.
+The SNMP is an application layer protocol and uses User Datagram Protocol (UDP) to exchange management information between management entities, which offers network management services for monitoring and control of network devices. SNMP enables network administrators to manage network performance, find and solve network problems, and plan for network growth. SNMP is a network management tool that allows network administrator to perform monitoring control, and planning tasks on the network to be managed.
 
 ---
 
 Quản lý mạng bao gồm các nhiệm vụ: Lên kế hoạch, tổ chức, giám sát, tính toán và điều khiển các hoạt động và các tài nguyên mạng giữ cho các dịch vụ mạng luôn sẵn sàng và thực hiện đúng nhiệm vụ của mình.
 Mục tiêu của quản lý mạng:
-•	Quản lý tài nguyên và dịch vụ: Bao gồm việc điều khiển, giám sát, cập nhật và báo cáo tình trạng mạng, cấu hình thiết bị và dịch vụ mạng.
-•	Đơn giản hóa sự phức tạp trong quản lý hệ thống: Hệ thống quản lý có nhiệm vụ chuyển các thông tin hệ thống thành dạng con người có thể hiểu được.
-•	Đảm bảo các dịch vụ tin cậy: Quản lý mạng phát hiện lỗi và các mối đe dọa kịp thời đảm bảo trạng thái ổn định và giảm thiểu thời gian ngừng hoạt động của hệ thống.
+• Quản lý tài nguyên và dịch vụ: Bao gồm việc điều khiển, giám sát, cập nhật và báo cáo tình trạng mạng, cấu hình thiết bị và dịch vụ mạng.
+• Đơn giản hóa sự phức tạp trong quản lý hệ thống: Hệ thống quản lý có nhiệm vụ chuyển các thông tin hệ thống thành dạng con người có thể hiểu được.
+• Đảm bảo các dịch vụ tin cậy: Quản lý mạng phát hiện lỗi và các mối đe dọa kịp thời đảm bảo trạng thái ổn định và giảm thiểu thời gian ngừng hoạt động của hệ thống.
+Hỗ trợ duy trì và phát triển hệ thống mạng: Quản lý mạng cung cấp các thông tin cụ thể về hệ thống mạng để giảm thiểu thời gian tìm lỗi và sửa lỗi, để lên kế hoạch duy trì mạng ổn định và phát triển hệ thống.
+
 Kiến trúc hệ thống quản lý mạng:
 Theo Internet RFCs thành phần hệ thống mạng phân tán điển hình bao gồm
-1.	Network elements: Các thiết bị mạng như: computer, router, server, switch,...
-2.	Manager: Người quản lý đưa ra các lệnh và nhận thông báo từ các agent. Thường chỉ có vài manager trên một hệ thống
-3.	Agent: Nhận yêu cầu từ manager thực hiện thu thập và lưu trữ các thông tin quản lý được từ các phần tử mạng sau đó gửi lại cho manager. Một agent có hiểu biết về các thông tin quản lý và chuyển đổi chúng sang form tương thích với giao thức quản lý mạng.
-4.	Đối tượng quản lý: tài nguyên vật lý: cpu, bộ nhớ, ổ đĩa,…, tài nguyên logic: tốc độ mạng, gói tin dữ liệu, thông lượng, chất lượng đường truyền, Các event log, báo cáo cảnh báo,… dịch vụ mạng: SMTP, …
-5.	Network Management Stations: Trạm quản lý mạng hay còn gọi là Trạm điều khiển thực thi các ứng dụng quản lý giám sát và điều khiển các phần tử mạng. Về mặt vật lý, các NMS thường là các máy tính trạm làm việc kỹ thuật có CPU nhanh, màn hình màu mega pixel, bộ nhớ lớn và không gian đĩa dồi dào.
-6.	Giao thức quản lý mạng: Một giao thức quản lý được sử dụng để truyền tải thông tin quản lý giữa các đại lý và các trạm quản lý mạng (NMS). Giao thức thông tin quản lý chung (CMIP), Giao thức quản lý mạng đơn giản (SNMP) là giao thức quản lý tiêu chuẩn trên thực tế của cộng đồng Internet.
-(Giao thức thông tin quản lý chung (CMIP) là một giao thức quản lý mạng dựa trên OSI. Nó cung cấp triển khai cho các dịch vụ được xác định bởi CMIS (Dịch vụ Thông tin Quản lý Chung), cho phép giao tiếp giữa các ứng dụng quản lý mạng và các agent quản lý.)
-7.	Structure of Management Information (SMI): được sử dụng để xác định các quy tắc đặt tên cho các đối tượng và mã hóa các đối tượng trong một trung tâm mạng được quản lý. Nói cách khác, SMI là một ngôn ngữ để xác định một phiên bản cụ thể của dữ liệu trong một trung tâm mạng được quản lý.
-SMI chia thành ba phần: định nghĩa mô-đun, định nghĩa đối tượng và định nghĩa thông báo.
-8.	Management Information Base (MIB) là một loại cơ sở dữ liệu được sử dụng để quản lý các thiết bị trong mạng truyền thông.
 
- 
+1. Network elements: Các thiết bị mạng như: computer, router, server, switch,...
+2. Manager: Người quản lý đưa ra các lệnh và nhận thông báo từ các agent. Thường chỉ có vài manager trên một hệ thống
+3. Agent: Nhận yêu cầu từ manager thực hiện thu thập và lưu trữ các thông tin quản lý được từ các phần tử mạng sau đó gửi lại cho manager. Một agent có hiểu biết về các thông tin quản lý và chuyển đổi chúng sang form tương thích với giao thức quản lý mạng.
+4. Đối tượng quản lý: tài nguyên vật lý: cpu, bộ nhớ, ổ đĩa,…, tài nguyên logic: tốc độ mạng, gói tin dữ liệu, thông lượng, chất lượng đường truyền, Các event log, báo cáo cảnh báo,… dịch vụ mạng: SMTP, …
+5. Network Management Stations: Trạm quản lý mạng hay còn gọi là Trạm điều khiển thực thi các ứng dụng quản lý giám sát và điều khiển các phần tử mạng. Về mặt vật lý, các NMS thường là các máy tính trạm làm việc kỹ thuật có CPU nhanh, màn hình màu mega pixel, bộ nhớ lớn và không gian đĩa dồi dào.
+6. Giao thức quản lý mạng: Một giao thức quản lý được sử dụng để truyền tải thông tin quản lý giữa các đại lý và các trạm quản lý mạng (NMS). Giao thức thông tin quản lý chung (CMIP), Giao thức quản lý mạng đơn giản (SNMP) là giao thức quản lý chuẩn trên thực tế của cộng đồng Internet.
+   (Giao thức thông tin quản lý chung (CMIP) là một giao thức quản lý mạng dựa trên OSI. Nó cung cấp triển khai cho các dịch vụ được xác định bởi CMIS (Dịch vụ Thông tin Quản lý Chung), cho phép giao tiếp giữa các ứng dụng quản lý mạng và các agent quản lý.)
+7. Structure of Management Information (SMI): được sử dụng để xác định các quy tắc đặt tên cho các đối tượng và mã hóa các đối tượng trong một trung tâm mạng được quản lý. Nói cách khác, SMI là một ngôn ngữ để xác định một phiên bản cụ thể của dữ liệu trong một trung tâm mạng được quản lý.
+   SMI chia thành ba phần: định nghĩa mô-đun, định nghĩa đối tượng và định nghĩa thông báo.
+8. Management Information Base (MIB) là một loại cơ sở dữ liệu được sử dụng để quản lý các thiết bị trong mạng truyền thông. #z
+
 The Typical Network Management Architecture
 Tương tác giữa NMS và các thiết bị được quản lý có thể là bất kỳ loại lệnh nào trong bốn loại lệnh khác nhau: đọc, ghi, duyệt và bẫy.
 • Đọc: Để giám sát các thiết bị được quản lý, NMSs đọc các biến do thiết bị duy trì.
 • Ghi: Để điều khiển các thiết bị được quản lý, NMS ghi các biến được lưu trữ trong các thiết bị được quản lý.
 • Traverse: NMS sử dụng các hoạt động này để xác định các biến mà thiết bị được quản lý hỗ trợ và để thu thập tuần tự thông tin từ các bảng biến (chẳng hạn như bảng định tuyến IP) trong các thiết bị được quản lý.
 • Bẫy: Các thiết bị được quản lý sử dụng bẫy để báo cáo không đồng bộ các sự kiện nhất định cho NMS.
+
 SNMP
-SNMP cho phép quản trị viên mạng quản lý hiệu suất mạng, tìm và giải quyết các sự cố mạng cũng như lập kế hoạch phát triển mạng. SNMP là một công cụ quản lý mạng cho phép người quản trị mạng thực hiện các nhiệm vụ giám sát, điều khiển và lập kế hoạch trên mạng được quản lý.
-SNMP dựa trên giao thức phản hồi yêu cầu không đồng bộ được cải tiến với tính năng thăm dò theo hướng bẫy. Không đồng bộ định tính đề cập đến thực tế là giao thức không cần đợi phản hồi trước khi gửi các thông báo khác. Thăm dò có điều hướng đề cập đến việc người quản lý thăm dò ý kiến để phản hồi thông báo bẫy được gửi bởi một tác nhân, xảy ra khi có một ngoại lệ hoặc sau khi một số biện pháp đã đạt đến một giá trị ngưỡng nhất định. SNMP hoạt động theo cách không kết nối với UDP là phương thức truyền tải ưu tiên.
-Trình quản lý SNMP gửi thông báo đến một tác nhân qua cổng đích UDP 161, trong khi tác nhân gửi thông báo bẫy tới trình quản lý thông qua cổng đích UDP 162. Chế độ không kết nối được chọn một phần để đơn giản hóa việc triển khai SNMP và vì không kết nối thường là chế độ ưu tiên cho các ứng dụng quản lý mà cần phải nói chuyện với nhiều đại lý.
- 
-SNMP Protocol
+
+- Giao quản lý mạng đơn giản là giao thức quản lý mạng chuẩn của cộng đồng Internet.
+- SNMP là một giao thức lớp ứng dụng và sử dụng UDP (cụ thể port 161 gửi y/c manager -> agent, 162 agent -> manager) trao đối các thông tin quản lý giữa các thực thể quản lý (manager - agent) cung cấp các dịch vụ quản lý mạng để giám sát và điều khiển các thiết bị mạng.
+- SNMP dựa trên giao thức phản hồi yêu cầu không đồng bộ được cải tiến với tính năng thăm dò theo hướng bẫy.
+  (SNMP làm việc theo 2 hướng: polling và traps
+  - Polling: Tham rò ở đây chính việc chủ động or theo yêu cầu gửi các yêu cầu từ manager -> agents. Không đồng bộ định tính: giao thức không cần đợi phản hồi trước khi gửi các thông báo khác.
+  - Trap-directed polling: Khi có một sự kiện bất thường hay 1 giá nào đó vượt ngưỡng agent sẽ chủ động gửi thông báo đến manager mà ko phải chờ đến khi manager polling)
+
+SNMP sử dụng giao thức UDP bởi 2 đặc điểm hướng không kết nối(ko cần thiết lập kết nối giữa ng nhận và ng gửi), best-effort (đây là giao thức không tin cậy nó liên tục gửi dữ liệu đến người nhận mà ko cần chờ phản hồi xác nhận). Chế độ không kết nối được chọn một phần để đơn giản hóa việc triển khai SNMP và vì không kết nối thường là chế độ ưu tiên cho các ứng dụng quản lý mà cần phải nói chuyện với nhiều đại lý.
+
+Kiến trúc SNMP:
+
+SNMP version
+
 Thiết kế mô-đun của SNMP được thể hiện ở sự nhất quán về kiến trúc, cấu trúc và khuôn khổ của cả ba phiên bản; điều này hỗ trợ sự phát triển dần dần của các cải tiến giao thức. Mặc dù SNMPv1 rất hiệu quả và dễ thực hiện, nó cũng có những vấn đề và hạn chế. Các cải tiến cho SNMPv1, dẫn đến một phiên bản SNMP mới, SNMPv2, cũng đã sửa các lỗi và hạn chế trong SNMPv1. Tuy nhiên, những cải tiến mới này không giải quyết được các thiếu sót về bảo mật, chẳng hạn như quyền riêng tư của dữ liệu, giả mạo và tiết lộ trái phép dữ liệu. Sau đó, SNMPv3 sau đó được phát triển để giải quyết những thiếu sót về bảo mật này: SNMPv3 bổ sung các tính năng bảo mật, chẳng hạn như kiểm soát truy cập, xác thực và mã hóa dữ liệu quản lý. Các thông số kỹ thuật SNMPv3 đã được Nhóm Chỉ đạo Kỹ thuật Internet (IESG) phê duyệt là Tiêu chuẩn Internet đầy đủ vào tháng 3 năm 2002 và các nhà cung cấp đã bắt đầu hỗ trợ SNMPv3 trong các sản phẩm của họ.
+
 SNMPv1:
 SNMPv1 là Khung quản lý mạng chuẩn Internet ban đầu, như được mô tả trong RFCs 1155, 1157 và 1212. Thường có ba cộng đồng trong SNMPv1: chỉ đọc, đọc-ghi và bẫy. Cần lưu ý rằng mặc dù SNMPv1 là lịch sử nhưng nó vẫn là cách triển khai SNMP chính mà nhiều nhà cung cấp hỗ trợ.
 Bảo mật của SNMPv1 dựa trên các cộng đồng, không có gì khác ngoài mật khẩu: các chuỗi văn bản thuần túy cho phép bất kỳ ứng dụng dựa trên SNMP nào biết các chuỗi đó để có quyền truy cập vào thông tin quản lý của thiết bị.
 SNMPv1 là một giao thức yêu cầu / phản hồi đơn giản. Hệ thống quản lý mạng đưa ra yêu cầu và các thiết bị được quản lý trả lại phản hồi. Hành vi này được thực hiện bằng cách sử dụng một trong bốn hoạt động giao thức: Get, GetNext, Set và Trap.
 SNMPv2
 
+#PDU , bản tin
 
-1. Network elements: Các thiết bị mạng như: computer, router, server, switch,...
-2. Manager: Người quản lý đưa ra các lệnh và nhận thông báo từ các agent. Thường chỉ có vài manager trên một hệ thống
-3. Agent: Nhận yêu cầu từ manager thực hiện thu thập và lưu trữ các thông tin quản lý được từ các phần tử mạng sau đó gửi lại cho manager. Một agent có hiểu biết về các thông tin quản lý và chuyển đổi chúng sang form tương thích với giao thức quản lý mạng.
-4. Đối tượng quản lý: tài nguyên vật lý và logic: cpu, dung lượng, nhiệt độ.
+v1: get, get-next, set, trap
+v2: get, get-next, set, trap(with other format), get-bulk, inform
+community,
+advance:
+v2c (the Community-based SNMP version 2)
+v3:
+
+Challenges
+
+• The increasing pervasiveness of Mobility and Wireless technologies;
+• The soaring number of connected devices, eventually leading to sensor
+networks;
+• The accelerated race for processing power and memory increase, continuing to support the trend of more and more intelligence at the network periphery;
+• The expected heavy increase in digitized media, user-generated content,and associated critical requirement for data search, handling, and organization.
+• Location determination, as an important enabler for new categories of context aware services;
+• End user provided infrastructure and services, possibly driving a user-generated infrastructure, similar to the trend towards user-generated content;
+• Security and resilience of the infrastructures, associated with growing concerns for privacy in an environment where users (or their attributes/avatars) will have multiple identities and identifiers;
+• More and more intelligent devices with self-adaptation/context awareness characteristics;
+• Service adaptivity, and service configurability, with service platforms providing the agility for ad-hoc coalition of resources.
+
+---
+
+• Sự phổ biến ngày càng tăng của các công nghệ Di động và Không dây;
+• Số lượng thiết bị được kết nối tăng vọt, cuối cùng dẫn đến mạng cảm biến;
+• Cuộc đua tăng tốc về sức mạnh xử lý và tăng bộ nhớ, tiếp tục hỗ trợ xu hướng ngày càng có nhiều trí thông minh hơn ở ngoại vi mạng;
+• Sự gia tăng dự kiến ​​về phương tiện số hóa, nội dung do người dùng tạo và yêu cầu quan trọng liên quan đến tìm kiếm, xử lý và tổ chức dữ liệu.
+• Xác định vị trí, như một yếu tố quan trọng cho các loại dịch vụ nhận biết ngữ cảnh mới;
+• Người dùng cuối cung cấp cơ sở hạ tầng và dịch vụ, có thể thúc đẩy cơ sở hạ tầng do người dùng tạo, tương tự như xu hướng đối với nội dung do người dùng tạo;
+• Bảo mật và khả năng phục hồi của cơ sở hạ tầng, liên quan đến mối quan tâm ngày càng tăng về quyền riêng tư trong môi trường mà người dùng (hoặc thuộc tính / hình đại diện của họ) sẽ có nhiều danh tính và số nhận dạng;
+• Ngày càng có nhiều thiết bị thông minh với các đặc điểm tự thích ứng / nhận thức bối cảnh;
+• Khả năng thích ứng của dịch vụ và khả năng cấu hình dịch vụ, với các nền tảng dịch vụ cung cấp sự linh hoạt cho liên minh tài nguyên đặc biệt.
